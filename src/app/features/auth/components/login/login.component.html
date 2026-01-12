@@ -1,0 +1,41 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="logo">
+      <h1>Sistema</h1>
+    </div>
+
+    <div class="login-content">
+      <h2>Login com Active Directory</h2>
+      
+      <div *ngIf="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Autenticando com Active Directory...</p>
+        <p class="small">Usando credenciais do Windows</p>
+      </div>
+
+      <div *ngIf="!loading && error" class="error-message">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <p>{{ error }}</p>
+        <button (click)="retry()" class="retry-btn">Tentar Novamente</button>
+      </div>
+
+      <div *ngIf="!loading && !error && userInfo" class="success-message">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <h3>Autenticado com sucesso!</h3>
+        <p>Bem-vindo, <strong>{{ userInfo.name }}</strong></p>
+        <p class="small">{{ userInfo.email }}</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Autenticação integrada com Active Directory</p>
+    </div>
+  </div>
+</div>
